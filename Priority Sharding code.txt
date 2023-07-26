@@ -1,0 +1,37 @@
+class Node:
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+        
+    def __repr__(self):
+        return f"Node({self.name}, {self.score}%)"
+
+def shard_nodes(nodes):
+    high_priority_shard = []
+    medium_priority_shard = []
+    low_priority_shard = []
+    
+    for node in nodes:
+        if node.score > 70:
+            high_priority_shard.append(node)
+        elif 50 <= node.score <= 70:
+            medium_priority_shard.append(node)
+        else:
+            low_priority_shard.append(node)
+            
+    return high_priority_shard, medium_priority_shard, low_priority_shard
+
+# Sample nodes
+nodes = [
+    Node("A", 90),
+    Node("B", 65),
+    Node("C", 30),
+    Node("D", 72),
+    Node("E", 55),
+    Node("F", 48)
+]
+
+high_shard, medium_shard, low_shard = shard_nodes(nodes)
+print("High Priority Shard:", high_shard)
+print("Medium Priority Shard:", medium_shard)
+print("Low Priority Shard:", low_shard)
